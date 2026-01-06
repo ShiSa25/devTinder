@@ -1,8 +1,11 @@
 const express = require('express');
 
 const app = express();
+app.use(express.json());
 
-app.get("/user", (req, res) => {
+app.get("/user/:userId/:name", (req, res) => {
+    console.log({...req.query});
+    console.log({...req.params});
     res.send({ firstName: "Shiva", lastName: "Sahu"});
 });
 
@@ -16,9 +19,7 @@ app.delete("/user", (req, res) => {
     res.send("User deleted successfully");
 })
 
-app.use("/", (req, res) => {
-    res.send("Hello babe");
-});
+
 
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
